@@ -73,13 +73,13 @@ def write_couplets(text, HorV='V', quality='L', out_file=None):
     out_im.show()
 
 
-
-text = '普天同庆 欢度春节'
-write_couplets(text, HorV='V', quality='M', out_file='普天同庆.jpg')
-
 #
-# text = '年尽岁除岁月如歌 冬去春来春光似画'
-# write_couplets(text, HorV='H', quality='M', out_file='岁月如歌.jpg')
+# text = '普天同庆 欢度春节'
+# write_couplets(text, HorV='V', quality='M', out_file='普天同庆.jpg')
+
+
+text = '年尽岁除岁月如歌 冬去春来春光似画'
+write_couplets(text, HorV='H', quality='M', out_file='岁月如歌.jpg')
 #
 # text = '人世间纵有百娇千红 唯独你是我情之所钟'
 # write_couplets(text, HorV='H', quality='M', out_file='情之所钟.jpg')

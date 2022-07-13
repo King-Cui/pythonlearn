@@ -4,9 +4,7 @@ import datetime,os,time,sys
 #oneday = datetime.timedelta(days=1)
 #date1 = today - oneday
 #ck_dt = "{0}".format(date1)  # {ck_dt}
-# ck_dt = sys.argv[1]
-
-ck_dt = '2022-07-07'
+ck_dt = sys.argv[1]
 
 sleep = f""" sleep 5s"""
 # tableua to superset(全量)
@@ -73,24 +71,6 @@ cmd21 = f"""
 flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048 --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar --parameters '{{"database":"caizhi_daoshu","table":"dm_community_kpi_detailed_statistics_report_90d","isLocalOrTest":"produce","fields":"fcorp_name,fcorp_id,fgroup_wx_id,fgroup_name,fgroup_owner_name,fgroup_member_count,click_cnt","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dm/dm_community_kpi_detailed_statistics_report_90d/dt={ck_dt}"}}';
 """
 
-
-cmd22 = f"""
-flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048  --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar  --parameters '{{"database":"caizhi_daoshu","table":"bi_number_microfinance_employees_month","isLocalOrTest":"produce","fields":"fcorp_id,fcorp_name,fmonth_worth_staff_cnt,ftotal_date_fstaff_cnt,fdate_cnt,favg_final_staff_cnt","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dm/bi_number_microfinance_employees_month/dt={ck_dt}"}}';
-"""
-
-cmd23 = f"""
-flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048  --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar  --parameters '{{"database":"caizhi_daoshu","table":"bi_zhejiang_tnumber_microfinance_employees_month","isLocalOrTest":"produce","fields":"fcorp_id,fcorp_name,fmonth_worth_staff_cnt,ftotal_date_fstaff_cnt,fdate_cnt,favg_final_staff_cnt","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dm/bi_zhejiang_tnumber_microfinance_employees_month/dt={ck_dt}"}}';
-"""
-
-cmd24 = f"""
-flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048 --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar --parameters '{{"database":"caizhi_bi","table":"bi_corp_overview_week","isLocalOrTest":"produce","fields":"fcorp_id,fcorp_name,ftotal_client,ftotal_staff,fadd_client,fclient_pv,fclient_visit_pv,fclient_potential_pv,fclient_customer_pv,fclient_uv,fclient_visit_uv,fclient_potential_uv,fclient_customer_uv,fmanager_pv,fmanager_uv,fstaff_pv,fstaff_uv,fstaff_taskmodule_pv,fstaff_taskpagelist_pv,fstaff_taskpagedetail_pv,fstaff_taskmodule_uv,fstaff_taskpagelist_uv,fstaff_taskpagedetail_uv,fdistrubution_task_count,fdate","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dws/bi_corp_overview_week/dt={ck_dt}"}}'
-"""
-
-cmd25 = f"""
-flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048 --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar --parameters '{{"database":"caizhi_bi","table":"bi_corp_overview_month","isLocalOrTest":"produce","fields":"fcorp_id,fcorp_name,ftotal_client,ftotal_staff,fadd_client,fclient_pv,fclient_visit_pv,fclient_potential_pv,fclient_customer_pv,fclient_uv,fclient_visit_uv,fclient_potential_uv,fclient_customer_uv,fmanager_pv,fmanager_uv,fstaff_pv,fstaff_uv,fstaff_taskmodule_pv,fstaff_taskpagelist_pv,fstaff_taskpagedetail_pv,fstaff_taskmodule_uv,fstaff_taskpagelist_uv,fstaff_taskpagedetail_uv,fdistrubution_task_count,fdate","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dws/bi_corp_overview_month/dt={ck_dt}"}}'
-"""
-
-
 #PI 项目（全量）
 
 cmd12 = f"""
@@ -100,6 +80,10 @@ flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager ya
 cmd13 = f"""
 flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048 --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar --parameters '{{"database":"caizhi_daoshu","table":"dm_pi_staff_task_summary","isLocalOrTest":"produce","fields":"fdate,ftask_info_id,ftask_name,flevel_name,fcustomer_channel_type,finish_staff_count,unfinish_staff_count","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dm/dm_pi_staff_task_summary"}}';
 """
+
+# cmd14 = f"""
+#flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048 --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar --parameters '{{"database":"caizhi_daoshu","table":"dm_pi_staff_mode_statistic_df","isLocalOrTest":"produce","fields":"fcorp_id,fcorp_name,fstaff_id,fstaff_name,fdept_id,fdept_path,ftask_total_count,ftask_finished_count,fcumtomer_total_count,fcumtomer_finished_count,fdate,fmode_id,fmode_name,flevel_ids,flevel_name,fcustomer_channel_type","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dm/dm_pi_staff_mode_statistic_df"}}';
+#"""
 
 cmd14 = f"""
 flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048 --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar --parameters '{{"database":"caizhi_daoshu","table":"dm_pi_staff_mode_statistic_df","isLocalOrTest":"produce","fields":"fcorp_id,fcorp_name,fstaff_id,fstaff_name,fdept_id,fdept_path,ftask_total_count,ftask_finished_count,ftodo_tasks_num,fcumtomer_total_count,fcumtomer_finished_count,fdate,fmode_id,fmode_name,flevel_ids,flevel_name,fcustomer_channel_type","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dm/dm_pi_staff_mode_statistic_df"}}';
@@ -112,14 +96,6 @@ flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager ya
 
 cmd20 = f"""
 flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048 --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar --parameters '{{"database":"caizhi_daoshu","table":"dm_magic_page_staff_1d_bi","isLocalOrTest":"produce","fields":"fcorp_id,fcorp_name,fstaff_id,fstaff_name,fuser_id,fuser_aes_id,ftitle,fcolumn_id,fpage_count,fdate","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dm/dm_magic_page_staff_1d_bi/dt={ck_dt}"}}';
-"""
-
-#hive to clickhouse
-cmd26 = f"""
-flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster  --yarnslots 4  --yarnjobManagerMemory 2048  --yarntaskManagerMemory 2048 --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar --parameters '{{"database":"caizhi_bigdata","table":"dm_intended_customers_dynamics_di","isLocalOrTest":"produce","fields":"fid,fcorp_id,fstaff_id,fopen_id,fvisit_user_id,fvisit_user_type,funion_id,fstaff_client_id,fsnapshot_id,fnews_info_id,fobj_id,fread_record_id,ftype,fsub_type,fnick_name,fdescribe,fis_readed,fis_deleted,fcreate_by,fdate_created,flast_updated,fauto_id,finfo_type,fproduct_name,fproduct_type_id,fproduct_type_name,fbusiness_type","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dm/dm_intended_customers_dynamics_di/dt={ck_dt}"}}';
-"""
-cmd27 = f"""
-flink run --class com.tenwit.realtime.app.daoshu.hive2clickhouse --jobmanager yarn-cluster --yarnslots 4 --yarnjobManagerMemory 2048 --yarntaskManagerMemory 2048 --parallelism 2 --detached --yarnname daoshu /data/flink/daoshu/jars/realtime_daoshu_wyf9_fdt.jar --parameters '{{"database":"caizhi_bigdata","table":"dws_staff_task_progress","isLocalOrTest":"produce","fields":"fcorp_id,fcorp_name,ftask_id,ftask_name,ftype,freceiver_count,ffinish_count_sub,ffinish_count,fstart_time,fend_time,fstart_time_sub,fend_time_sub,fcycle_type","dt":"{ck_dt}","path":"hdfs://10.0.138.2:4007/warehouse/dws/dws_staff_task_progress/dt={ck_dt}"}}';
 """
 
 
@@ -137,37 +113,32 @@ dict_list[cmd21] = 'KPI'
 dict_list[cmd10] = 'KPI'
 dict_list[cmd11] = 'KPI'
 dict_list[cmd15] = 'KPI'
-dict_list[cmd16] = 'xxxx'
+dict_list[cmd16] = 'KPI'
 dict_list[cmd17] = 'KPI'
 dict_list[cmd18] = 'KPI'
-dict_list[cmd22] = 'KPI'
-dict_list[cmd23] = 'KPI'
-dict_list[cmd24] = 'KPI'
-dict_list[cmd25] = 'KPI'
 dict_list[cmd12] = 'PI'
 dict_list[cmd13] = 'PI'
 dict_list[cmd14] = 'PI'
 dict_list[cmd19] = 'magic_page'
 dict_list[cmd20] = 'magic_page'
-dict_list[cmd26] = 'hive to clickhouse'
-dict_list[cmd27] = 'yyy'
+
 # "table":"dm_pi_staff_mode_statistic_df"
-key_only = ['yyy']
-# key_only = ['KPI','tableua to superset','magic_page','hive to clickhouse']
+#key_only = ['tableua to superset','KPI','PI']
+key_only = ['PI']
 for key in dict_list.keys():
     if len(key_only) != 0 and dict_list[key] not in key_only:
         continue
 
     print("start run",time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
     print(dict_list[key],":")
-    print(key)
+    #print(key)
     print(key.split("--")[-1])
-    # os.system(key)
+    os.system(key)
 
     print("finished run",time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
     print("")
     print("sleep 5s ...")
-    # os.system(sleep)
+    os.system(sleep)
 
 print("all finished")
 

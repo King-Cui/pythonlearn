@@ -55,7 +55,7 @@ with open("table_rely.txt","r",encoding="gbk",errors="ignore") as file:
         item = line.split('|')
         edges.append((item[0].strip(),item[1].strip()))
 
-input_str = 'dm_back_employee_send_detail_1d' # input table_name
+input_str = 'dm_tag_dept_stat_1d' # input table_name
 print(input_str)
 print(Tree(input_str, edges))
 
